@@ -1,0 +1,58 @@
+/* Written for 1920x1080 and old TV browsers (Tizen 3+), so: no CSS grid gap, no vars in calc tricks. */
+html, body {
+  margin: 0; width: 1920px; height: 1080px; overflow: hidden;
+  background: #0b1020; color: #f5f1e8;
+  font-family: "SamsungOne", "Helvetica Neue", Arial, sans-serif;
+  cursor: none;
+  text-shadow: 0 2px 18px rgba(0,0,0,.35);
+}
+
+#sky {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  transition: background 60s linear;
+}
+#sky:after { /* soft vignette so it reads like a framed print */
+  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);
+}
+
+#stage {
+  position: absolute; top: 110px; left: 140px; right: 140px; bottom: 110px;
+  transition: transform 8s ease-in-out;
+}
+
+.time { position: absolute; top: 0; left: 0; }
+#clock { font-size: 260px; font-weight: 200; line-height: 1; letter-spacing: -6px; }
+#date  { font-size: 54px; font-weight: 300; opacity: .85; margin-top: 18px; }
+
+.weather { position: absolute; top: 20px; right: 0; text-align: right; }
+.weather .now { font-size: 140px; font-weight: 200; line-height: 1; }
+#w-icon { margin-right: 24px; }
+#w-desc { font-size: 40px; opacity: .8; margin-top: 10px; }
+.days { margin-top: 36px; }
+.day {
+  display: inline-block; width: 150px; margin-left: 20px; padding: 18px 0;
+  border-radius: 18px; background: rgba(255,255,255,.08); text-align: center;
+}
+.day .d { font-size: 28px; opacity: .75; }
+.day .i { font-size: 52px; margin: 6px 0; }
+.day .t { font-size: 30px; }
+.day .t span { opacity: .55; }
+
+.quote {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  max-width: 1400px; transition: opacity 1.2s ease;
+}
+#q-text { font-family: Georgia, "Times New Roman", serif; font-style: italic;
+          font-size: 58px; line-height: 1.3; margin: 0; }
+#q-ref  { font-size: 34px; letter-spacing: 3px; text-transform: uppercase; opacity: .7; margin: 24px 0 0; }
+.fade { opacity: 0; }
+
+#toast {
+  position: absolute; bottom: 40px; right: 60px; padding: 16px 28px; border-radius: 14px;
+  background: rgba(0,0,0,.6); font-size: 30px; opacity: 0; transition: opacity .4s;
+}
+#toast.show { opacity: 1; }
+
+body.minimal .weather, body.minimal .quote { opacity: 0; }
+body.minimal .time { top: 50%; left: 50%; transform: translate(-50%, -60%); text-align: center; }
